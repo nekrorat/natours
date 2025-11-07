@@ -10458,7 +10458,7 @@
     try {
       const res = await axios_default({
         method: "POST",
-        url: "http://localhost:3001/api/v1/users/login",
+        url: "/api/v1/users/login",
         data: {
           email,
           password
@@ -10478,7 +10478,7 @@
     try {
       const res = await axios_default({
         method: "GET",
-        url: "http://localhost:3001/api/v1/users/logout"
+        url: "/api/v1/users/logout"
       });
       if (res.status === 200) location.reload(true);
     } catch (err) {
@@ -10523,7 +10523,7 @@
   // public/js/updateSettings.js
   var updateSettings = async (data, type) => {
     try {
-      const url = type === "password" ? "http://localhost:3001/api/v1/users/updateMyPassword" : "http://localhost:3001/api/v1/users/updateMe";
+      const url = type === "password" ? "/api/v1/users/updateMyPassword" : "/api/v1/users/updateMe";
       const res = await axios_default({
         method: "PATCH",
         url,
@@ -10544,7 +10544,7 @@
         "pk_test_51SQczwEDRzOXe6ifzYqHhyY4sfQ8Gm0WC5YVPtCfj1ug08KnnpiOpxmnxtpoCtZ3bF9jqHV72umNu24yTI4VXQBw006CORhG8U"
       );
       const session = await axios_default(
-        `http://localhost:3001/api/v1/bookings/checkout-session/${tourId}`
+        `/api/v1/bookings/checkout-session/${tourId}`
       );
       await stripe.redirectToCheckout({
         sessionId: session.data.session.id

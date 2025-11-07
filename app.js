@@ -16,6 +16,7 @@ import userRouter from './routes/userRoutes.js';
 import reviewRouter from './routes/reviewRoutes.js';
 import viewRouter from './routes/viewRoutes.js';
 import bookingRouter from './routes/bookingRoutes.js';
+import compression from 'compression';
 
 const app = express();
 
@@ -109,11 +110,12 @@ app.use(
   }),
 );
 
+app.use(compression());
+
 app.use(express.json());
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  // console.log(req.cookies);
   next();
 });
 
