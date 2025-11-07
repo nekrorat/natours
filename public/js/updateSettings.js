@@ -1,0 +1,25 @@
+/* eslint-disable */
+
+import { showAlert } from './alerts.js';
+import axios from 'axios';
+
+export const updateSettings = async (data, type) => {
+  try {
+    const url =
+      type === 'password'
+        ? 'http://localhost:3001/api/v1/users/updateMyPassword'
+        : 'http://localhost:3001/api/v1/users/updateMe';
+
+    const res = await axios({
+      method: 'PATCH',
+      url,
+      data
+    });
+
+    if (res.status === 200) {
+      showAlert('success', `${type.toUpperCase()} updated successfully!`);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+};
